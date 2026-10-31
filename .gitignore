@@ -1,0 +1,28 @@
+# Local data and exports must never become release artifacts.
+.claude/
+sessions/
+transcripts/
+exports/
+output/
+*.json
+*.jsonl
+*.idx
+*.db
+*.sqlite*
+*.log
+*.pid
+*.pem
+*.key
+.env
+.env.*
+
+# Generated files and development dependencies.
+__pycache__/
+*.py[cod]
+.DS_Store
+._*
+.venv/
+node_modules/
+coverage/
+*.zip
+*.tar.gz

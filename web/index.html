@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Thread Library</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conversation">Skip to conversation</a>
+    <header class="app-header">
+      <div class="brand">
+        <svg viewBox="0 0 28 28" width="28" height="28" aria-hidden="true">
+          <rect x="4" y="4" width="8" height="20" rx="2" fill="currentColor" />
+          <path d="m17 4 6 1-3 19-6-1z" fill="currentColor" opacity=".45" />
+        </svg>
+        <div>
+          <span class="app-name">Thread Library</span
+          ><span class="app-subtitle">Claude desktop, on your Mac</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="local-label"
+          ><span class="dot"></span>Local &amp; read-only</span
+        ><button id="refresh" type="button">Refresh</button>
+      </div>
+    </header>
+    <div class="workspace">
+      <aside class="sidebar" aria-label="Thread browser">
+        <div class="sidebar-controls">
+          <div class="section-heading">
+            <h1>Your threads</h1>
+            <span id="thread-count" class="count">—</span>
+          </div>
+          <label class="sr-only" for="search"
+            >Search thread titles or project folders</label
+          >
+          <input
+            id="search"
+            type="search"
+            placeholder="Search titles or folders"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <div class="filter-row">
+            <label class="sr-only" for="project">Filter by project</label
+            ><select id="project">
+              <option value="">All projects</option></select
+            ><label class="sr-only" for="sort">Sort threads</label
+            ><select id="sort">
+              <option value="recent">Recent first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="title">By title</option>
+            </select>
+          </div>
+          <p class="active-note">
+            Active threads only. Archived and deleted threads stay out.
+          </p>
+        </div>
+        <p id="list-notice" class="notice" role="status" hidden></p>
+        <nav id="thread-list" class="thread-list" aria-label="Active threads">
+          <p class="list-empty">Reading your local threads…</p>
+        </nav>
+        <footer class="sidebar-footer">
+          <span id="updated">Checking local files…</span
+          ><span>No account needed</span>
+        </footer>
+      </aside>
+      <main id="conversation" tabindex="-1">
+        <div id="welcome" class="welcome">
+          <div class="welcome-mark" aria-hidden="true">↳</div>
+          <p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p>
+          <h2>Your work is still here.</h2>
+          <p>
+            Open a thread to read the conversation, then take it with you to
+            Codex or T3.
+          </p>
+          <div class="welcome-guide">
+            <span>01 <strong>Find a thread</strong></span
+            ><span>02 <strong>Read the context</strong></span
+            ><span>03 <strong>Copy or export</strong></span>
+          </div>
+        </div>
+        <section id="reader" aria-labelledby="thread-title" hidden>
+          <header class="reader-header">
+            <button id="back" type="button" class="back-button">
+              ← Threads
+            </button>
+            <div class="title-row">
+              <div>
+                <p id="thread-project" class="eyebrow"></p>
+                <h2 id="thread-title"></h2>
+              </div>
+              <span id="thread-status" class="active-badge">Active</span>
+            </div>
+            <p id="thread-meta" class="thread-meta"></p>
+            <div class="reader-actions">
+              <button id="handoff" class="primary" type="button">
+                Copy handoff</button
+              ><button id="markdown" type="button">Export Markdown</button
+              ><button id="json" type="button">Export JSON</button
+              ><label class="tool-toggle"
+                ><input id="show-tools" type="checkbox" /> Tools &amp;
+                context</label
+              >
+            </div>
+            <p
+              id="action-status"
+              class="action-status"
+              role="status"
+              aria-live="polite"
+            >
+              Copy a handoff into Codex or T3 to continue this thread.
+            </p>
+            <details id="copy-fallback" hidden>
+              <summary>Copy the handoff manually</summary>
+              <label class="sr-only" for="handoff-text">Handoff text</label
+              ><textarea id="handoff-text" readonly rows="8"></textarea>
+            </details>
+            <div id="thread-notice" class="notice" role="status" hidden></div>
+          </header>
+          <div class="conversation-toolbar">
+            <span id="message-count"></span
+            ><button id="latest" type="button" class="text-button">
+              Jump to latest ↓
+            </button>
+          </div>
+          <div id="messages" class="messages"></div>
+          <footer class="reader-footer">
+            <span
+              >History is reference material. Nothing runs from this
+              viewer.</span
+            ><span
+              >Markdown includes text and tools. JSON also keeps embedded
+              images.</span
+            >
+          </footer>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
